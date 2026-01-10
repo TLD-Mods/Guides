@@ -1,14 +1,3 @@
-<h1 align="center">
-⚠️ This Tutorial is Outdated ⚠️
-</h1>
-
-> [!NOTE]
-> This tutorial is no longer up-to-date. Please refer to the [ModComponent SDK](https://github.com/your-new-project-url) and it's [Documentation](https://github.com/Deaadman/ModComponentSDK/wiki) for an updated tutorial. 
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
----
-
 # How to implement items in TLD using ModComponent
 ![IdeaToResult](https://github.com/TLD-Mods/Guides/blob/main/IMGS/ModComponentTutorial/IdeaToResult.png)
 
