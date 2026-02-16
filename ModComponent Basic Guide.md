@@ -25,9 +25,9 @@ You will also need to install [Unity](unity.com), as it's the engine TLD uses. I
 
 For the JSON creation and editing required, any text editor is fine as long as it can export to JSON. In this guide, however, we will be using [Notepad++](https://notepad-plus-plus.org/downloads/).
 
-As of version 2.17 of TLD (Frontier Comforts), you will need:
-  * [MelonLoader 0.6.1](https://github.com/HerpDerpinstine/MelonLoader/releases/latest/download/MelonLoader.Installer.exe)
-  * [Unity 2021.3.6](https://unity.com/releases/editor/archive)
+As of version 2.51 of TLD, you will need:
+  * [MelonLoader](https://github.com/HerpDerpinstine/MelonLoader/releases/latest/download/MelonLoader.Installer.exe)
+  * [Unity 6000.0.60f1](https://unity.com/releases/editor/archive)
 > Bear in mind that mods are currently only compatible with legal Windows versions of the game, purchased through GOG, Steam or Epic Games Store (You'll need a compatibility plugin for the latter).
 
 ## 1. Concept
