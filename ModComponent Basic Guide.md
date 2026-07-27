@@ -318,51 +318,88 @@ Once you have defined the automap file, save it as a JSON in the **auto-map** fo
 
 ### 6.3. Localization file
 
-The localization file, that should be just called **Localization**, is a JSON that contains all the displayed text for our mod's needs. It defines names, descriptions, buttons... everything that have text in-game. You can set these to support diferent languages too. You can find [here](https://github.com/dommrogers/ModComponent/blob/master/docs/Localizations.md) the list of languages supported and how to write them in the file. If it doesn't recognise a language, it will always default to English, so be sure you always define English localization first. Here's how the Plant Nutrients localization file would look like, both in English and Spanish: 
+The localization file, that should be just called **Localization**, is a JSON that contains all the displayed text for our mod's needs. It defines names, descriptions, buttons... everything that have text in-game. You can set these to support different languages too. You can find [here](https://github.com/dommrogers/ModComponent/blob/master/docs/Localizations.md) the list of languages supported and how to write them in the file. If it doesn't recognise a language, it will always default to English, so be sure you always define English localization first. Here's how the Plant Nutrients localization file would look like, both in English and Spanish: 
 
 ![LocalizationFile](https://github.com/TLD-Mods/Guides/blob/main/IMGS/ModComponentTutorial/LocalizationFile.PNG)
 
 ### 6.4. Blueprints
+> [!IMPORTANT]
+> As of 2.55
 
-Blueprints can be an esential part of a mod if it relies heavyly on craftable items. Using ModComponent's sibling mod, [CraftingRevisions](https://github.com/dommrogers/CraftingRevisions/), we can easily add these in the game. Current CraftingRevisions format looks like this: 
+Blueprints can be an essential part of a mod if it relies heavily on craftable items. Using ModComponent's sibling mod, [CraftingRevisions](https://github.com/dommrogers/CraftingRevisions/), we can easily add these in the game. CraftingRevisions format looks like this: 
 
 ```json
 {
-    "Name": "PlantNutrientsCrafted",
-    "RequiredGear": [{"Item": "GEAR_BarkTinder", "Count": 2}],
-    "KeroseneLitersRequired": 0.0,
-    "GunpowderKGRequired": 0.0,
+    "Name": "",
+    "RequiredGear": [
+        {
+            "Item": "",
+            "Count": 0,
+            "Units": "Count"
+        },
+        {
+            "Item": "",
+            "Quantity": 0.0,
+            "Units": "Kilograms"
+        }
+    ],
+    "RequiredPowder": [
+        {
+            "Powder": "",
+            "QuantityInKilograms": 0
+        }
+    ],
+    "RequiredLiquid": [
+        {
+            "Liquid": "",
+            "VolumeInLitres": 0
+        }
+    ],
     "RequiredTool": "",
+    "OptionalTools": [],
+    "CraftedResult": "",
+    "CraftedResultCount": 0,
+    "DurationMinutes": 0,
+    "CraftingAudio": "",
+    "KeroseneLitersRequired": "",
+    "GunpowderKGRequired": "",
+    "RequiresLight": false,
+    "Locked": false,
+    "IgnoreLockInSurvival": false,
+    "AppearsInStoryOnly": false,
+    "AppearsInSurvivalOnly": false,
+    "AppliedSkill": "None",
+    "ImprovedSkill": "None",
     "RequiredCraftingLocation": "Anywhere",
     "RequiresLitFire": false,
-    "RequiresLight": true,
-    "CraftedResult": "GEAR_PlantNutrientsCrafted",
-    "CraftedResultCount": 1,
-    "DurationMinutes": 15,
-    "CraftingAudio": "Play_HarvestingPlants",
-    "AppliedSkill" : "None",
-    "ImprovedSkill" : "None"
+    "CanIncreaseRepairSkill": false
 }
 ```
 Although quite self-explanatory just reading the names, you can read more about how these parameters work [here](https://github.com/dommrogers/ModComponent/blob/master/docs/Blueprints.md), but bear in mind that this documentation have changed, so **RequiredGear** and **RequiredGearUnits** have been fused in a single line, as shown above.
 
-### 6.5. BuildInfo file (optional)
+### 6.5. BuildInfo File
+> [!IMPORTANT]
+> As of 2.55
 
-This file is a completely optional JSON file, as described in step 2. It defines some very basic info of your mod, like version number and author name. This is really helpful while testing, because you can see if your mod is loading or not. This is an example of a BuildInfo file, borrowed from the parent mod of Plant Nutrients, Indoors Greenery: 
+This file is a technically an optional JSON file, however without it some aspects of the mod wont work properly. It defines some very basic info of your mod, like version number and author name. This is really helpful while testing, because you can see if your mod is loading or not. This is an example of a BuildInfo file, borrowed from https://github.com/Arkhorse/FuelManager: 
 
 ```json
 {
-  "Name" : "Jods' Indoors Greenery",
-  "Version" : "2.1.0",
-	 "Author" : "Jods-Its"
+    "Name" : "FuelManager",
+    "Author": "The Illusion",
+    "Version" : "1.2.20",
+    "Requires": ["FuelManager.Shared"]
 }
 ```
-
-### 6.6. Making .modcomponent file
+- The `"Name"` field is your unique name for the mod.
+- The `"Author"` field is whatever name you intend on using for yourself.
+- The `"Version"` field is a [SemVer](https://semver.org) compatible version for your mod. You must increment this whenever you release an update and should match the version of any DLL your mod might also use.
+- The `"Requires"` field is optional and simply states what other `.modcomponent` files are required, based on those mods Name field and excluding the file extension. It is a list of strings.
+### 6.6. Making .modcomponent File
 
 The last step is making the file ModComponent is going to read while starting the game. It is always made using the parent folder that contains auto-map folder, bundle folder, etc. We have two options to achieve this:
-* We can use a compression tool, like [7-Zip](https://www.7-zip.org), to compress the parent folder, then rename the file extension **.zip** into a **.modcomponent** extension.
-* We can use [ModComponent Extractor](https://github.com/ds5678/ModComponentExtractor). By dropping the parent folder into the .exe, the extractor will automatically make the .modcomponent file for you.
+* We can use a compression tool, like [7-Zip](https://www.7-zip.org), to compress the parent folder, then rename the file extension `.zip` into a `.modcomponent` extension.
+* We can use [ModComponent Extractor](https://github.com/ds5678/ModComponentExtractor). By dropping the parent folder into the .exe, the extractor will automatically make the `.modcomponent` file for you.
 
 Once done, you can drop the file into your mods folder, as you normally would with any other mod.
 
@@ -376,7 +413,7 @@ If, for whatever reason, MelonLoaders log console throws some red text while loa
 
 ## 8. Finishing touches
 
-With your mod working, you may want to add your item in some places of the game or to some containers. You will need [Coordinates Grabber](https://github.com/ds5678/Coordinates-Grabber) mod for this, as it let you grab the position information of an item, copy the scene name in which you're located and, if you are looking at a container, what loot table it has. Usage intructions can be read in the mod repository.
+With your mod working, you may want to add your item in some places of the game or to some containers. You will need [Coordinates Grabber](https://github.com/ds5678/Coordinates-Grabber) mod for this, as it let you grab the position information of an item, copy the scene name in which you're located and, if you are looking at a container, what loot table it has. Usage instructions can be read in the mod repository.
 
 Spawn files are simple .txt files that goes into the **gear-spawns** folder. These files are defined by ModComponent's sibling mod [Gear Spawner](https://github.com/dommrogers/GearSpawner), and they look like this:
 
